@@ -1,7 +1,21 @@
+from selenium.webdriver.common.by import By
+
+
 class ListOrderLocators:
-    orders_in_work_xpath = "//main//ul[2]//li"
-    order_in_list_xpath = "//main[@class='App_componentContainer__2JC2W']//li[1]//a[1]"
-    compound_order_xpath = "//p[@class='text text_type_main-medium mb-8']"
-    number_order_in_list_order_xpath = "//*[@id='root']/div/main/div/div/ul/li[1]/a/div[1]/p[1]"
-    count_all_orders_xpath = "//*[@id='root']/div/main/div/div/div/div[2]/p[2]"
-    count_today_orders_xpath = "//*[@id='root']/div/main/div/div/div/div[3]/p[2]"
+    # локатор кнопки "Лента Заказов"
+    list_order_xpath = (By.XPATH, "(//p[text()='Лента Заказов'])")
+
+    # локатор текста "Состав"
+    compound_in_modal_window_xpath = (By.XPATH, "//p[text()='Cостав']")
+
+    # Локатор текста номера заказа
+    orders_in_work_xpath = (By.XPATH, "//ul[contains(@class, 'OrderFeed_orderListReady__1YFem')]//li")
+
+    # Локатор заказа в списке заказов
+    order_in_list_xpath = (By.XPATH, "//li[@class='OrderHistory_listItem__2x95r mb-6']")
+
+    # Локатор количества "Выполнено за все время"
+    count_all_orders_xpath = (By.XPATH, "(//p[contains(@class, 'OrderFeed_number__2MbrQ')])[1]")
+
+    # Локатор количества "Выполнено за сегодня"
+    count_today_orders_xpath = (By.XPATH, "(//p[contains(@class, 'OrderFeed_number__2MbrQ')])[2]")

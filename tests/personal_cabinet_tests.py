@@ -1,46 +1,46 @@
-from methods.other_methods import OtherMethods
-from methods.personal_cabinet_methods import PersonalCabinetMethods
+from helpers.other_methods import OtherMethods
+from pages.personal_cabinet_page import PersonalCabinetPage
 from utils.allure_decorator import allure_decorator
 from utils.urls import MAIN_URL, PERSONAL_CABINET_LOGIN_URL, AUTH_REGISTER_ENDPOINT, ORDERS_HISTORY_URL, \
     PROFILE_CABINET_URL
 
 
-class Tests:
+class TestsPersonalCabinet:
 
-    @allure_decorator("Тест перехода на страницу восстановления пароля")
+    @allure_decorator("Тест перехода на страницу личный кабинет")
     def test_click_restore_password(self, browser):
-        page = PersonalCabinetMethods(browser)
-        page.open_page(MAIN_URL)
-        page.click_on_element_personal_cabinet()
+        pc = PersonalCabinetPage(browser)
+        pc.open_page(MAIN_URL)
+        pc.click_on_personal_cabinet()
 
-        assert browser.current_url == PERSONAL_CABINET_LOGIN_URL
+        assert pc.get_current_page() == PERSONAL_CABINET_LOGIN_URL
 
-    @allure_decorator("Тест перехода на страницу восстановления пароля")
+    @allure_decorator("Тест перехода на страницу история заказов")
     def test_click_orders_history(self, browser):
-        page = PersonalCabinetMethods(browser)
-        page.open_page(MAIN_URL)
-        page.click_on_element_personal_cabinet()
+        pc = PersonalCabinetPage(browser)
+        pc.open_page(MAIN_URL)
+        pc.click_on_personal_cabinet()
         email, password, name = OtherMethods.generation_data()
         OtherMethods.create_user(AUTH_REGISTER_ENDPOINT, email, password, name)
-        page.send_text_auth_email(email)
-        page.send_text_auth_password(password)
-        page.click_on_element_input()
-        page.click_on_element_personal_cabinet()
-        page.click_on_element_orders_history()
+        pc.send_text_auth_email(email)
+        pc.send_text_auth_password(password)
+        pc.click_on_input()
+        pc.click_on_personal_cabinet()
+        pc.click_on_orders_history()
 
-        assert browser.current_url == ORDERS_HISTORY_URL
+        assert pc.get_current_page() == ORDERS_HISTORY_URL
 
-    @allure_decorator("Тест перехода на страницу восстановления пароля")
+    @allure_decorator("Тест выхода из аккаунта")
     def test_click_logout(self, browser):
-        page = PersonalCabinetMethods(browser)
-        page.open_page(MAIN_URL)
-        page.click_on_element_personal_cabinet()
+        pc = PersonalCabinetPage(browser)
+        pc.open_page(MAIN_URL)
+        pc.click_on_personal_cabinet()
         email, password, name = OtherMethods.generation_data()
         OtherMethods.create_user(AUTH_REGISTER_ENDPOINT, email, password, name)
-        page.send_text_auth_email(email)
-        page.send_text_auth_password(password)
-        page.click_on_element_input()
-        page.click_on_element_personal_cabinet()
-        page.click_on_element_logout()
+        pc.send_text_auth_email(email)
+        pc.send_text_auth_password(password)
+        pc.click_on_input()
+        pc.click_on_personal_cabinet()
+        pc.click_on_logout()
 
-        assert browser.current_url == PROFILE_CABINET_URL
+        assert pc.get_current_page() == PROFILE_CABINET_URL

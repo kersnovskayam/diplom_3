@@ -1,12 +1,16 @@
+import time
+
 from helpers.other_methods import OtherMethods
 from pages.constructor_page import ConstructorPage
 from pages.list_orders_page import ListOrdersPage
 from pages.personal_cabinet_page import PersonalCabinetPage
 from utils.allure_decorator import allure_decorator
 from utils.constansts import COMPOUND
-from utils.urls import MAIN_URL, AUTH_REGISTER_ENDPOINT
+from utils.urls import MAIN_URL
 
-class TestsListOrder:
+class Tests:
+
+    other_method = OtherMethods()
 
     @allure_decorator("Тест открытия модального окна заказа в ленте заказов")
     def test_click_order_in_list_order(self, browser):
@@ -27,8 +31,7 @@ class TestsListOrder:
 
         lo.open_page(MAIN_URL)
         pc.click_on_personal_cabinet()
-        email, password, name = OtherMethods.generation_data()
-        OtherMethods.create_user(AUTH_REGISTER_ENDPOINT, email, password, name)
+        email, password, name = self.other_method.generation_data()
         pc.send_text_auth_email(email)
         pc.send_text_auth_password(password)
         pc.click_on_input()
@@ -51,8 +54,7 @@ class TestsListOrder:
 
         lo.open_page(MAIN_URL)
         pc.click_on_personal_cabinet()
-        email, password, name = OtherMethods.generation_data()
-        OtherMethods.create_user(AUTH_REGISTER_ENDPOINT, email, password, name)
+        email, password, name = self.other_method.generation_data()
         pc.send_text_auth_email(email)
         pc.send_text_auth_password(password)
         pc.click_on_input()
@@ -76,8 +78,7 @@ class TestsListOrder:
 
         lo.open_page(MAIN_URL)
         pc.click_on_personal_cabinet()
-        email, password, name = OtherMethods.generation_data()
-        OtherMethods.create_user(AUTH_REGISTER_ENDPOINT, email, password, name)
+        email, password, name = self.other_method.generation_data()
         pc.send_text_auth_email(email)
         pc.send_text_auth_password(password)
         pc.click_on_input()
@@ -101,8 +102,7 @@ class TestsListOrder:
 
         lo.open_page(MAIN_URL)
         pc.click_on_personal_cabinet()
-        email, password, name = OtherMethods.generation_data()
-        OtherMethods.create_user(AUTH_REGISTER_ENDPOINT, email, password, name)
+        email, password, name = self.other_method.generation_data()
         pc.send_text_auth_email(email)
         pc.send_text_auth_password(password)
         pc.click_on_input()
@@ -113,6 +113,7 @@ class TestsListOrder:
         pc.click_on_orders_history()
         order_in_history_orders = pc.get_text_number_order()
         lo.click_on_list_orders()
+        time.sleep(3)
         order_in_work = lo.get_text_work_order()
 
         assert order_in_history_orders == order_in_work

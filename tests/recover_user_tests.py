@@ -15,7 +15,6 @@ class TestsRecoverUser:
 
         assert pc.get_current_page() == RECOVERY_URL
 
-
     @allure_decorator("Тест ввода почты и нажатия на кнопку восстановить")
     def test_click_restore(self, browser):
         pc = PersonalCabinetPage(browser)
@@ -26,7 +25,6 @@ class TestsRecoverUser:
         pc.click_on_recovery_button()
 
         assert pc.get_current_page() == RECOVERY_URL
-
 
     @allure_decorator("Тест скрытия/открытия пароля в поле ввода")
     def test_click_hidden_password(self, browser):
@@ -40,3 +38,4 @@ class TestsRecoverUser:
         pc.click_on_hidden_password()
 
         assert pc.get_current_page() == RESET_PASSWORD_URL
+

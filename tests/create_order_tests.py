@@ -4,10 +4,11 @@ from pages.list_orders_page import ListOrdersPage
 from pages.personal_cabinet_page import PersonalCabinetPage
 from utils.allure_decorator import allure_decorator
 from utils.constansts import PRICE_ORDER, SUCCESSFULLY_RESULT_ORDER_TEXT, NAME_BUN_MODAL_WINDOW
-from utils.urls import MAIN_URL, AUTH_REGISTER_ENDPOINT, LIST_ORDERS_URL, BUN_INGREDIENT_URL
+from utils.urls import MAIN_URL, LIST_ORDERS_URL, BUN_INGREDIENT_URL
 
 
 class TestsCreateOrder:
+    other_method = OtherMethods()
 
     @allure_decorator("Тест нажатия на страницу конструктор")
     def test_click_constructor(self, browser):
@@ -50,6 +51,7 @@ class TestsCreateOrder:
 
         assert cr.get_current_page() == BUN_INGREDIENT_URL
 
+
     @allure_decorator("Тест переноса ингридиента в конструктор заказа и изменение цены в счетчике")
     def test_move_ingredient(self, browser):
         cr = ConstructorPage(browser)
@@ -67,8 +69,7 @@ class TestsCreateOrder:
 
         cr.open_page(MAIN_URL)
         pc.click_on_personal_cabinet()
-        email, password, name = OtherMethods.generation_data()
-        OtherMethods.create_user(AUTH_REGISTER_ENDPOINT, email, password, name)
+        email, password, name = self.other_method.generation_data()
         pc.send_text_auth_email(email)
         pc.send_text_auth_password(password)
         pc.click_on_input()

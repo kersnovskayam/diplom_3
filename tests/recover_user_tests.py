@@ -38,4 +38,3 @@ class TestsRecoverUser:
         pc.click_on_hidden_password()
 
         assert pc.get_current_page() == RESET_PASSWORD_URL
-

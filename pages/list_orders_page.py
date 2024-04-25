@@ -7,6 +7,7 @@ from utils.allure_decorator import allure_decorator
 
 class ListOrdersPage(BasePage):
 
+
     @allure_decorator("Нажатие на раздел лента заказов")
     def click_on_list_orders(self):
         element = self.check_visibility_of_element_located(ListOrderLocators.list_order_xpath)
@@ -16,6 +17,7 @@ class ListOrdersPage(BasePage):
     def click_on_order_in_list(self):
         element = self.check_visibility_of_element_located(ListOrderLocators.order_in_list_xpath)
         self.click_on_element(element)
+
 
     @allure_decorator("Получение номера заказа из раздела история заказов")
     def get_text_number_order(self):
@@ -28,7 +30,9 @@ class ListOrdersPage(BasePage):
         order_text_lines = order_text.split('\n')
         order_number_str = order_text_lines[0]
         order_number = order_number_str[1:]
+
         return order_number
+
 
     @allure_decorator("Получение количества заказов за все время из ленты заказов")
     def get_text_all_orders(self):

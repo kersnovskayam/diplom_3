@@ -1,5 +1,3 @@
-import time
-
 from helpers.other_methods import OtherMethods
 from pages.constructor_page import ConstructorPage
 from pages.list_orders_page import ListOrdersPage
@@ -31,7 +29,7 @@ class Tests:
 
         lo.open_page(MAIN_URL)
         pc.click_on_personal_cabinet()
-        email, password, name = self.other_method.generation_data()
+        email, password = self.other_method.return_user_data()
         pc.send_text_auth_email(email)
         pc.send_text_auth_password(password)
         pc.click_on_input()
@@ -54,7 +52,7 @@ class Tests:
 
         lo.open_page(MAIN_URL)
         pc.click_on_personal_cabinet()
-        email, password, name = self.other_method.generation_data()
+        email, password = self.other_method.return_user_data()
         pc.send_text_auth_email(email)
         pc.send_text_auth_password(password)
         pc.click_on_input()
@@ -78,7 +76,7 @@ class Tests:
 
         lo.open_page(MAIN_URL)
         pc.click_on_personal_cabinet()
-        email, password, name = self.other_method.generation_data()
+        email, password = self.other_method.return_user_data()
         pc.send_text_auth_email(email)
         pc.send_text_auth_password(password)
         pc.click_on_input()
@@ -102,7 +100,7 @@ class Tests:
 
         lo.open_page(MAIN_URL)
         pc.click_on_personal_cabinet()
-        email, password, name = self.other_method.generation_data()
+        email, password = self.other_method.return_user_data()
         pc.send_text_auth_email(email)
         pc.send_text_auth_password(password)
         pc.click_on_input()
@@ -113,7 +111,6 @@ class Tests:
         pc.click_on_orders_history()
         order_in_history_orders = pc.get_text_number_order()
         lo.click_on_list_orders()
-        time.sleep(3)
         order_in_work = lo.get_text_work_order()
 
         assert order_in_history_orders == order_in_work

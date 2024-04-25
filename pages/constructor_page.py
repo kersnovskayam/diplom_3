@@ -39,6 +39,7 @@ class ConstructorPage(BasePage):
         element = self.check_visibility_of_element_located(ConstructorLocators.create_order_xpath)
         self.click_on_element(element)
 
+
     @allure_decorator("Получение успешного результата оформления заказа")
     def get_successfully_result_order(self):
         text = self.check_visibility_of_element_located(ConstructorLocators.successfully_order_text_xpath)
